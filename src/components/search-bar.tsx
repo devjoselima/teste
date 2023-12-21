@@ -1,6 +1,11 @@
+import { ChangeEvent } from "react"
 import searchIcon from "../assets/search-icon.svg"
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  query: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+export const SearchBar = ({ query }: SearchBarProps) => {
   return (
     <div className="flex">
       <div className="bg-white flex items-center px-1">
@@ -13,6 +18,7 @@ export const SearchBar = () => {
         id="search"
         placeholder="pesquisar"
         className="p-2 outline-none bg-white text-sm"
+        onChange={query}
       />
     </div>
   )

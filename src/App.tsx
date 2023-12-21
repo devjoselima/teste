@@ -13,6 +13,7 @@ function App() {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const [activeLink, setActiveLink] = useState("Minha Carteira")
   const [certificates, setCertificates] = useState(initialCertificates)
+  const [search, setSearch] = useState("")
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen)
@@ -35,6 +36,14 @@ function App() {
       certificates.filter((certificate) => certificate.id !== currentId)
     )
   }
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event?.target.value)
+  }
+
+  const filteredCertificates = certificates.filter((certificate) =>
+    certificate.name.toLowerCase().includes(search.toLowerCase())
+  )
 
   return (
     <div className="bg-[#f8f9fa]">
@@ -95,13 +104,13 @@ function App() {
           <div className="lg:flex items-center justify-between py-6 block">
             <h1 className="text-3xl text-bold text-center">Minha carteira</h1>
             <div className="flex justify-center py-3">
-              <SearchBar />
+              <SearchBar query={handleSearch} />
               <Button onClick={handleAddCertificate} />
             </div>
           </div>
 
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-3">
-            {certificates.map((certificate) => (
+            {filteredCertificates.map((certificate) => (
               <Certificate
                 key={certificate.id}
                 name={certificate.name}
