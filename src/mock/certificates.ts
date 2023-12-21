@@ -29,4 +29,19 @@ export const certificates = [
     name: "Nome da certificação",
     company: "CertifiKEDU",
   },
+  {
+    id: 7,
+    name: "Nome da certificação",
+    company: "CertifiKEDU",
+  },
+  {
+    id: 8,
+    name: "Nome da certificação",
+    company: "CertifiKEDU",
+  },
+  {
+    id: 9,
+    name: "Nome da certificação",
+    company: "CertifiKEDU",
+  },
 ]

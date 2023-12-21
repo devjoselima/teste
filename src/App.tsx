@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { toast, ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 import logo from "./assets/logo.svg"
 
@@ -29,12 +31,26 @@ function App() {
     }
 
     setCertificates([...certificates, newCertificate])
+
+    toast.success("Certificação adicionada com sucesso", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "light",
+      pauseOnHover: false,
+    })
   }
 
   const handleRemoveCertificate = (currentId: number) => {
     setCertificates(
       certificates.filter((certificate) => certificate.id !== currentId)
     )
+
+    toast.success("Certificação removida com sucesso", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "light",
+      pauseOnHover: false,
+    })
   }
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +63,7 @@ function App() {
 
   return (
     <div className="bg-[#f8f9fa]">
+      <ToastContainer />
       <nav className=" border-gray-200 bg-[#f8f9fa]  text-gray-900 border-b-4 h-[65px]">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a
