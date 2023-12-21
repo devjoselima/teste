@@ -18,7 +18,7 @@ function App() {
     setMenuOpen(!isMenuOpen)
   }
 
-  const addCertificate = () => {
+  const handleAddCertificate = () => {
     const certificateId = certificates.length + 1
 
     const newCertificate = {
@@ -30,7 +30,7 @@ function App() {
     setCertificates([...certificates, newCertificate])
   }
 
-  const removeCertificate = (currentId: number) => {
+  const handleRemoveCertificate = (currentId: number) => {
     setCertificates(
       certificates.filter((certificate) => certificate.id !== currentId)
     )
@@ -96,7 +96,7 @@ function App() {
             <h1 className="text-3xl text-bold text-center">Minha carteira</h1>
             <div className="flex justify-center py-3">
               <SearchBar />
-              <Button onClick={addCertificate} />
+              <Button onClick={handleAddCertificate} />
             </div>
           </div>
 
@@ -106,7 +106,7 @@ function App() {
                 key={certificate.id}
                 name={certificate.name}
                 company={certificate.company}
-                onClick={() => removeCertificate(certificate.id)}
+                onClick={() => handleRemoveCertificate(certificate.id)}
               />
             ))}
           </div>
