@@ -7,22 +7,33 @@ import { Button } from "./components/button"
 import { SearchBar } from "./components/search-bar"
 import { Certificate } from "./components/certificate"
 
+import { certificates as initialCertificates } from "./mock/certificates"
+
 function App() {
   const [isMenuOpen, setMenuOpen] = useState(false)
   const [activeLink, setActiveLink] = useState("Minha Carteira")
-  const [certificates, setCertificates] = useState([1, 2, 3, 4, 5, 6])
+  const [certificates, setCertificates] = useState(initialCertificates)
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen)
   }
 
   const addCertificate = () => {
-    const newCertificateId = certificates.length + 1
-    setCertificates([...certificates, newCertificateId])
+    const certificateId = certificates.length + 1
+
+    const newCertificate = {
+      id: certificateId,
+      name: "Nome da certificação",
+      company: "CertifiKEDU",
+    }
+
+    setCertificates([...certificates, newCertificate])
   }
 
-  const removeCertificate = (id: number) => {
-    setCertificates(certificates.filter((certId) => certId !== id))
+  const removeCertificate = (currentId: number) => {
+    setCertificates(
+      certificates.filter((certificate) => certificate.id !== currentId)
+    )
   }
 
   return (
@@ -90,8 +101,13 @@ function App() {
           </div>
 
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-3">
-            {certificates.map((id) => (
-              <Certificate key={id} onClick={() => removeCertificate(id)} />
+            {certificates.map((certificate) => (
+              <Certificate
+                key={certificate.id}
+                name={certificate.name}
+                company={certificate.company}
+                onClick={() => removeCertificate(certificate.id)}
+              />
             ))}
           </div>
         </div>

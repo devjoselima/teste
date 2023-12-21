@@ -1,5 +1,5 @@
 interface ButtonProps {
-  onClick: () => void
+  onClick?: () => void
 }
 
 export const Button = ({ onClick }: ButtonProps) => {
